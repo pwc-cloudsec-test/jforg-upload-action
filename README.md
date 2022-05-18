@@ -1,1 +1,1 @@
-# jforg-upload-action
+# jfrog-upload-action
