@@ -1,0 +1,40 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Artifactory-Test
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  # Allows other repositories to access this workflow
+  workflow_call:
+    inputs:
+        image-filepath:
+          required: true
+          type: string
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+   # runs-on: windows-latest
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout repository 
+        uses: actions/checkout@v2
+        
+      # Runs the Artifactory action 
+      - name: Run local JFrog CLI action
+        uses: ./
+        env: 
+          ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }} 
+          ARTIFACTORY_URL: ${{ secrets.ARTIFACTORY_URL }} 
+          APPLICATION_CI: ${{ secrets.APPLICATION_CI }}
+          IMAGE_FILEPATH: ${{ inputs.image-filepath }}
