@@ -3,8 +3,8 @@ description: "Uses a multi-step process to run JFrog CLI commands"
 runs:
     using: "composite"
     steps:
-      - name: Download JFrog CLI
-        uses: jfrog/setup-jfrog-cli@v2
+      #- name: Download JFrog CLI
+        #uses: jfrog/setup-jfrog-cli@v2
       - name: print
         uses: echo "this is a test"
         shell: bash
