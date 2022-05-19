@@ -39,3 +39,5 @@ jobs:
           ARTIFACTORY_URL: ${{ secrets.ARTIFACTORY_URL }} 
           APPLICATION_CI: ${{ secrets.APPLICATION_CI }}
           IMAGE_FILEPATH: ${{ inputs.image-filepath }}
+      - name: Message
+        run: echo "Action Complete"
