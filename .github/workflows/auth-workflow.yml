@@ -27,14 +27,12 @@ jobs:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout repository 
-        uses: actions/checkout@v2
-        
-      # Runs the Artifactory action 
-      - name: Run local JFrog CLI action
-        uses: ./
-        env: 
-          ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }} 
-          ARTIFACTORY_URL: ${{ secrets.ARTIFACTORY_URL }} 
-          APPLICATION_CI: ${{ secrets.APPLICATION_CI }}
-          IMAGE_FILEPATH: ${{ inputs.image-filepath }}
+      - name: Download JFrog CLI
+        uses: jfrog/setup-jfrog-cli@v2
+      
+      #- name: Ping JFrog Server
+        #run: jfrog rt ping --url ${{ secrets.ARTIFACTORY_URL }} --access-token ${{ secrets.ARTIFACTORY_TOKEN }}
+        #shell: bash
+      - name: Upload test artifact
+        run: jf rt u ./Dockerfile cloudsecpwc-docker-local/${{ secrets.APPLICATION_CI }}/${{ github.event.repository.name }}/ --url ${{ secrets.ARTIFACTORY_URL }} --access-token ${{ secrets.ARTIFACTORY_TOKEN }}
+        shell: bash
