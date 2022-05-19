@@ -30,7 +30,7 @@ jobs:
       - name: Checkout repository 
         uses: actions/checkout@v2
       - name: Message
-        run: echo "Running Jfrog CLI"
+        run: echo "Calling Upload Action"
       # Runs the Artifactory action 
       - name: Run local JFrog CLI action
         uses: ./
