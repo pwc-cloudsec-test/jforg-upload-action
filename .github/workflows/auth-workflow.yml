@@ -34,5 +34,5 @@ jobs:
         #run: jfrog rt ping --url ${{ secrets.ARTIFACTORY_URL }} --access-token ${{ secrets.ARTIFACTORY_TOKEN }}
         #shell: bash
       - name: Upload test artifact
-        run: jf rt u ./Dockerfile cloudsecpwc-docker-local/${{ secrets.APPLICATION_CI }}/${{ github.event.repository.name }}/ --url ${{ secrets.ARTIFACTORY_URL }} --access-token ${{ secrets.ARTIFACTORY_TOKEN }}
+        run: jf rt u ./Dockerfile cloudsecpwc-docker-local/${{ secrets.APPLICATION_CI }}/${{ github.event.repository.name }}/ --url ${{ secrets.ARTIFACTORY_URL }} --access-token ${{ secrets.ARTIFACTORY_TOKEN }} --dry-run
         shell: bash
