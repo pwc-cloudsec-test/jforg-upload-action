@@ -33,7 +33,7 @@ jobs:
         run: echo "Calling Upload Action"
       # Runs the Artifactory action 
       - name: Run local JFrog CLI action
-        uses: ./
+        uses: ./action-upload
         env: 
           ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }} 
           ARTIFACTORY_URL: ${{ secrets.ARTIFACTORY_URL }} 
