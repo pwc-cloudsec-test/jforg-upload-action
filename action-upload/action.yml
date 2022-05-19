@@ -3,6 +3,8 @@ description: "Uses a multi-step process to run JFrog CLI commands"
 runs:
     using: "composite"
     steps:
+      - name: Message
+        run: "Download JFrog CLI"
       - name: Download JFrog CLI
         uses: jfrog/setup-jfrog-cli@v2
       - name: print
@@ -11,6 +13,6 @@ runs:
       #- name: Ping JFrog Server
         #run: jfrog rt ping --url ${{ secrets.ARTIFACTORY_URL }} --access-token ${{ secrets.ARTIFACTORY_TOKEN }}
         #shell: bash
-      #- name: Upload test artifact
-        #run: jf rt u ${{ env.IMAGE_FILEPATH }} l-docker-testing/${{ env.APPLICATION_CI }}/${{ github.event.repository.name }}/ --dry-run --url ${{ secrets.ARTIFACTORY_URL }} --access-token ${{ secrets.ARTIFACTORY_TOKEN }}
-        #shell: bash
+      - name: Upload test artifact
+        run: jf rt u ${{ env.IMAGE_FILEPATH }} l-docker-testing/${{ env.APPLICATION_CI }}/${{ github.event.repository.name }}/ --dry-run --url ${{ secrets.ARTIFACTORY_URL }} --access-token ${{ secrets.ARTIFACTORY_TOKEN }}
+        shell: bash
